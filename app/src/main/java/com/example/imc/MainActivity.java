@@ -2,8 +2,10 @@ package com.example.imc;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -12,9 +14,6 @@ import android.widget.Toast;
 import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity {
-    //String do TOASY
-    String myString="Você clicou!";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,55 +30,56 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                //TOAST
-                Toast.makeText(getApplicationContext(),myString,Toast.LENGTH_LONG).show();
+                // Configurações dos textViews que recebem os valores
+                TextView editPeso = (TextView) findViewById(R.id.editPeso);
+                TextView editAltura  = (TextView) findViewById(R.id.editAltura);
+                // Configuração dos textViews que exibem os valores
+                TextView textResultado =(TextView)  findViewById(R.id.textResultado);
+                TextView textDescricao = (TextView) findViewById(R.id.textDescricao);
+
+                if(TextUtils.isEmpty(editPeso.getText()) || TextUtils.isEmpty(editAltura.getText())){
+                    Toast.makeText(getApplicationContext(),getString(R.string.err_valorinvalido),Toast.LENGTH_LONG).show();
+                }else {
+                    // Peso recebido do usuario
+                    int peso = Integer.parseInt(editPeso.getText().toString());
+
+                    // Altura recebida do usuario
+                    float altura = Float.parseFloat(editAltura.getText().toString()) / 100;
+
+                    //Calculos para armazenar os valores do imc na variavel IMC
+                    //pede para transformar em array o imc
 
 
+                    imc[0] = peso / (altura * altura);
 
-                // abaixo segue as  configuraçaoes dos textViews tanto dos que vao receber os valores do usuarios quanto os que vao exibir
-              TextView editPeso = (TextView) findViewById(R.id.editPeso);
-              TextView editAltura  = (TextView) findViewById(R.id.editAltura);
-              TextView textResultado =(TextView)  findViewById(R.id.textResultado);
-              TextView textDescricao = (TextView) findViewById(R.id.textDescricao);
-
-                 int peso = Integer.parseInt(editPeso.getText().toString());// a string e aquilo que eu recebi do meu  usuário
-                 float altura = Float.parseFloat(editAltura.getText().toString());
-
-                 //Calculos para armazenaro os valores do imc na variavel IMC
-                //pede para transformar em array o imc
-                imc[0] = peso /(altura * altura);
-
-                if(imc[0]<18.5) {
-                    textResultado.setText(imc[0] + "");
-                    textDescricao.setText("Baixo Peso");
-                }
-                        else{
-
-                    if(imc[0]<25) {
+                    if (imc[0] < 18.5) {
                         textResultado.setText(imc[0] + "");
-                        textDescricao.setText("Peso Adequado");
-                    }
-                    else{
-                        if(imc[0]<30) {
+                        textDescricao.setText(getString(R.string.rec_pesobaixo));
+                    } else {
+
+                        if (imc[0] < 25) {
                             textResultado.setText(imc[0] + "");
-                            textDescricao.setText("Sobrepeso");
-                        }
-                        else{
-                            textResultado.setText(imc[0] + "");
-                            textDescricao.setText("Obesidade");
+                            textDescricao.setText(getString(R.string.rec_pesoadequado));
+                        } else {
+                            if (imc[0] < 30) {
+                                textResultado.setText(imc[0] + "");
+                                textDescricao.setText(getString(R.string.rec_pesoacima));
+                            } else {
+                                textResultado.setText(imc[0] + "");
+                                textDescricao.setText(getString(R.string.rec_pesoobeso));
 
 
+                            }
                         }
                     }
+
+
+                    Intent intent = new Intent(MainActivity.this, Receber.class);
+
+                    intent.putExtra("result", textResultado.getText().toString());
+                    intent.putExtra("desc", textDescricao.getText().toString());
+                    startActivity(intent);
                 }
-
-
-                Intent intent = new Intent(MainActivity.this,Receber.class);
-
-                intent.putExtra("result",textResultado.getText().toString());
-                intent.putExtra("desc",textDescricao.getText().toString());
-                startActivity(intent);
-
 
             }
         });

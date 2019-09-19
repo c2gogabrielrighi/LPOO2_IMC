@@ -6,14 +6,14 @@
     <string name="btCalcular">Calcular</string>
     <string name="textView3">Resultados do calculo de IMC</string>
 
-    <string name="rec_pesobaixo">Baixo peso</string>
-    <string name="rec_pesoadequado">Peso adequado</string>
+    <string name="rec_pesobaixo">Bajo peso</string>
+    <string name="rec_pesoadequado">Normal</string>
     <string name="rec_pesoacima">Sobrepeso</string>
-    <string name="rec_pesoobeso">Obesidade</string>
+    <string name="rec_pesoobeso">Obesidad</string>
 
     <string name="err_valorinvalido">Valores invalidos!</string>
 
-    <string name="acc_textPeso">Peso em quilogramas</string>
-    <string name="acc_textAltura">Altura em centimetros</string>
+    <string name="acc_textPeso">Peso en kilogramos</string>
+    <string name="acc_textAltura">Altura en centímetros</string>
     <string name="acc_btCalcular">Calcular</string>
 </resources>

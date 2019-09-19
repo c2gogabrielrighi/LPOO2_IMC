@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">BMI Calculator</string>
+
+    <string name="textPeso">Weight (kg)</string>
+    <string name="textAltura">Height (cm)</string>
+    <string name="btCalcular">Calculate</string>
+    <string name="textView3">Your BMI test result</string>
+
+    <string name="rec_pesobaixo">Underweight</string>
+    <string name="rec_pesoadequado">Normal</string>
+    <string name="rec_pesoacima">Overweight</string>
+    <string name="rec_pesoobeso">Obese</string>
+
+    <string name="err_valorinvalido">Invalid inputs!</string>
+
+    <string name="acc_textPeso">Weight in kilograms</string>
+    <string name="acc_textAltura">Height in centimetres</string>
+    <string name="acc_btCalcular">Calculate</string>
+</resources>
